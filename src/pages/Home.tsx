@@ -1,4 +1,4 @@
-import { VRButton, ARButton, XR, Controllers, Hands } from "@react-three/xr";
+import { VRButton, XR, Controllers, Hands } from "@react-three/xr";
 import { Canvas } from "@react-three/fiber";
 
 function Home() {
