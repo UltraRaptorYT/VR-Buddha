@@ -21,7 +21,7 @@ export default function CV() {
     );
     setInterval(async () => {
       runDetector(detector);
-    }, 1000);
+    }, 100);
   }
 
   async function runDetector(detector: poseDetection.PoseDetector) {
