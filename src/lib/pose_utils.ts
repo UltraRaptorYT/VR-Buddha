@@ -133,7 +133,6 @@ export function drawSkeleton(
   scale = 1
 ) {
   const adjacentKeyPoints = getAdjacentKeyPoints(keypoints, minConfidence);
-  console.log(adjacentKeyPoints);
 
   adjacentKeyPoints.forEach((point) => {
     drawSegment(

@@ -19,13 +19,13 @@ export default function CV() {
       poseDetection.SupportedModels.MoveNet,
       detectorConfig
     );
+    console.log("Running Detector");
     setInterval(async () => {
       runDetector(detector);
     }, 100);
   }
 
   async function runDetector(detector: poseDetection.PoseDetector) {
-    console.log("Running Detector");
     if (
       typeof webcamRef.current !== "undefined" &&
       webcamRef.current !== null &&
@@ -40,7 +40,6 @@ export default function CV() {
       webcamRef.current.video.height = videoHeight;
 
       const poses = await detector.estimatePoses(video);
-      console.log(poses[0]);
       drawCanvas(poses[0], video, videoWidth, videoHeight, canvasRef);
     }
   }
@@ -58,8 +57,8 @@ export default function CV() {
         canvas.current.width = videoWidth;
         canvas.current.height = videoHeight;
 
-        drawKeypoints(poses["keypoints"], 0.5, ctx);
-        drawSkeleton(poses["keypoints"], 0.5, ctx);
+        drawKeypoints(poses["keypoints"], 0.45, ctx);
+        drawSkeleton(poses["keypoints"], 0.55, ctx);
       }
     }
   };
