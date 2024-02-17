@@ -52,7 +52,7 @@ export default function CV() {
     videoHeight: number,
     canvas: MutableRefObject<HTMLCanvasElement | null>
   ) => {
-    if (canvas.current && poses) {
+    if (canvas.current && poses && video) {
       const ctx = canvas.current.getContext("2d");
       if (ctx) {
         canvas.current.width = videoWidth;
