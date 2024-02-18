@@ -1,17 +1,11 @@
 // import { VRButton, XR, Controllers, Hands } from "@react-three/xr";
 import { useRef } from "react";
 import { VRButton, XR } from "@react-three/xr";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { DoubleSide, Mesh } from "three";
+import { Canvas } from "@react-three/fiber";
+import { DoubleSide } from "three";
+import Plane from "@/components/3D/Plane";
 
 function Home() {
-  const ref = useRef(null);
-
-  useFrame(() => {
-    if (ref.current) {
-      (ref.current as Mesh).rotation.y += 0.01;
-    }
-  });
   return (
     <>
       <VRButton />
@@ -30,10 +24,7 @@ function Home() {
             <boxGeometry args={[10, 5]} />
             <meshBasicMaterial color="gold" />
           </mesh>
-          <mesh ref={ref} rotation={[-Math.PI / 2, 0, 0]}>
-            <planeGeometry args={[10, 5]} />
-            <meshStandardMaterial color="black" side={DoubleSide} />
-          </mesh>
+          <Plane color="black" size={{ width: 20, height: 20 }} />
         </XR>
       </Canvas>
     </>
