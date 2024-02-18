@@ -1,8 +1,6 @@
 // import { VRButton, XR, Controllers, Hands } from "@react-three/xr";
-import { useRef } from "react";
 import { VRButton, XR } from "@react-three/xr";
 import { Canvas } from "@react-three/fiber";
-import { DoubleSide } from "three";
 import Plane from "@/components/3D/Plane";
 
 function Home() {
