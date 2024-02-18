@@ -13,6 +13,7 @@
     "@mediapipe/pose": "^0.5.1675469404",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.5",
+    "@react-three/drei": "^9.97.6",
     "@react-three/fiber": "^8.15.16",
     "@react-three/xr": "^5.7.1",
     "@tensorflow-models/hand-pose-detection": "^2.0.1",
