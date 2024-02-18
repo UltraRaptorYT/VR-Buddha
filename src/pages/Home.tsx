@@ -9,7 +9,7 @@ import { useLoader } from "@react-three/fiber";
 function Home() {
   // const [showBuddha, setShowBuddha] = useState<boolean>(false);
 
-  const obj = useLoader(OBJLoader, "/GuanYin.obj");
+  const obj = useLoader(OBJLoader, "/GuanYinModel.obj");
 
   // useEffect(() => {
   //   setTimeout(() => {
