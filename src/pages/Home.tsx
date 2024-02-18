@@ -22,7 +22,7 @@ function Home() {
           />
           {/* <Controllers />
           <Hands /> */}
-          <mesh position={[0.1, 0, 0]}>
+          <mesh position={[0, 0.1, 0]}>
             <boxGeometry />
             <meshBasicMaterial color="gold" />
           </mesh>
