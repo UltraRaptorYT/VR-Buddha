@@ -13,7 +13,7 @@ function Home() {
       <VRButton />
       <Canvas>
         <XR>
-          {/* <ambientLight /> */}
+          <ambientLight />
           {/* <pointLight position={[0.5, 0.5, 0.5]} /> */}
           <directionalLight
             castShadow
