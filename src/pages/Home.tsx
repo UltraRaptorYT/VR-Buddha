@@ -18,7 +18,7 @@ function Home() {
           />
           {/* <Controllers />
           <Hands /> */}
-          <mesh position={[0.1, 0, 0]} rotation={[0, 0, Math.PI / 4]}>
+          <mesh position={[0.1, 0, 0]}>
             <boxGeometry />
             <meshBasicMaterial color="gold" />
           </mesh>
