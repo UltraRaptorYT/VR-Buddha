@@ -1,7 +1,7 @@
 // import { VRButton, XR, Controllers, Hands } from "@react-three/xr";
 import { VRButton, XR } from "@react-three/xr";
-import { Canvas } from "@react-three/fiber";
-// import { DoubleSide } from "three";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { DoubleSide } from "three";
 
 function Home() {
   return (
@@ -18,9 +18,13 @@ function Home() {
           />
           {/* <Controllers />
           <Hands /> */}
-          <mesh position={[0.1, 0.1, 0]} rotation={[0, 0, Math.PI / 4]}>
-            <boxGeometry />
-            <meshBasicMaterial color="yellow" />
+          <mesh position={[0, 0, 0]} rotation={[0, 0, Math.PI / 4]}>
+            <boxGeometry args={[10, 5]} />
+            <meshBasicMaterial color="gold" />
+          </mesh>
+          <mesh rotation={[-Math.PI / 2, 0, 0]}>
+            <planeGeometry args={[10, 5]} />
+            <meshStandardMaterial color="black" side={DoubleSide} />
           </mesh>
         </XR>
       </Canvas>
