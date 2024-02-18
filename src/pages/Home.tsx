@@ -21,7 +21,7 @@ function Home() {
           </mesh> */}
           <Box
             position={[0, -0.05, 0]}
-            scale={[100, 0.1, 100]}
+            scale={[5, 0.1, 5]}
             rotation={[0, 0, 0]}
             receiveShadow
           >
