@@ -18,11 +18,11 @@ function Home() {
           />
           {/* <Controllers />
           <Hands /> */}
+          <Plane color="black" size={{ width: 20, height: 20 }} />
           <mesh position={[0, 0, 0]} rotation={[0, 0, Math.PI / 4]}>
-            <boxGeometry args={[10, 5]} />
+            <boxGeometry args={[5, 5]} />
             <meshBasicMaterial color="gold" />
           </mesh>
-          <Plane color="black" size={{ width: 20, height: 20 }} />
         </XR>
       </Canvas>
     </>
