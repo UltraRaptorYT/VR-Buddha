@@ -17,9 +17,9 @@ function Home() {
           />
           <Controllers />
           <Hands />
-          <mesh>
+          <mesh position={[0, 0, 0]}>
             <boxGeometry />
-            <meshBasicMaterial color="blue" />
+            <meshBasicMaterial color="red" />
           </mesh>
           <mesh rotation={[-Math.PI / 2, 0, 0]}>
             <planeGeometry args={[10, 5]} />
