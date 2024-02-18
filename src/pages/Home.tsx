@@ -1,9 +1,13 @@
 // import { VRButton, XR, Controllers, Hands } from "@react-three/xr";
 import { VRButton, XR } from "@react-three/xr";
 import { Canvas } from "@react-three/fiber";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+import { useLoader } from "@react-three/fiber";
 // import Plane from "@/components/3D/Plane";
 
 function Home() {
+  const obj = useLoader(OBJLoader, "/GuanYin.obj");
+
   return (
     <>
       <VRButton />
@@ -22,6 +26,7 @@ function Home() {
             <boxGeometry />
             <meshBasicMaterial color="gold" />
           </mesh>
+          <primitive object={obj} />
           {/* <Plane color="black" size={{ width: 1, height: 1 }} /> */}
         </XR>
       </Canvas>
