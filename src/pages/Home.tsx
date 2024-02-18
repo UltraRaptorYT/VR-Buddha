@@ -9,11 +9,11 @@ function Home() {
       <VRButton />
       <Canvas>
         <XR>
-          <ambientLight />
-          <pointLight position={[0.5, 0.5, 0.5]} />
+          {/* <ambientLight /> */}
+          {/* <pointLight position={[0.5, 0.5, 0.5]} /> */}
           <directionalLight
             castShadow
-            position={[0.5, 0.5, 0.5]}
+            position={[0.1, 0.1, 0.1]}
             shadow-mapSize-width={1024}
           />
           {/* <Controllers />
