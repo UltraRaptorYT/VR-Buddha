@@ -19,7 +19,7 @@ function Home() {
           {/* <Controllers />
           <Hands /> */}
           <mesh position={[0.1, 0, 0]} rotation={[0, 0, Math.PI / 4]}>
-            <boxGeometry args={[5, 5]} />
+            <boxGeometry />
             <meshBasicMaterial color="gold" />
           </mesh>
           {/* <Plane color="black" size={{ width: 1, height: 1 }} /> */}
