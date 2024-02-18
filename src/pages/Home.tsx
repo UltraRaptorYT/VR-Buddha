@@ -26,7 +26,7 @@ function Home() {
             <boxGeometry />
             <meshBasicMaterial color="gold" />
           </mesh>
-          <primitive object={obj} position={[0.1, 0, 0.5]} />
+          <primitive object={obj} position={[0.1, 0, -0.5]} />
           {/* <Plane color="black" size={{ width: 1, height: 1 }} /> */}
         </XR>
       </Canvas>
