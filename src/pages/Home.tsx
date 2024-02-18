@@ -3,19 +3,19 @@ import { VRButton, XR } from "@react-three/xr";
 import { Canvas } from "@react-three/fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import { useLoader } from "@react-three/fiber";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 // import Plane from "@/components/3D/Plane";
 
 function Home() {
-  const [showBuddha, setShowBuddha] = useState<boolean>(false);
+  // const [showBuddha, setShowBuddha] = useState<boolean>(false);
 
   const obj = useLoader(OBJLoader, "/GuanYin.obj");
 
-  useEffect(() => {
-    setTimeout(() => {
-      setShowBuddha(true);
-    }, 5000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setShowBuddha(true);
+  //   }, 5000);
+  // }, []);
 
   return (
     <>
@@ -37,18 +37,11 @@ function Home() {
             <meshBasicMaterial color="gold" />
           </mesh>
           <mesh>
-            {showBuddha ? (
-              <primitive
-                object={obj}
-                position={[0, 2.5, -50]}
-                scale={[1.5, 1.5, 1.5]}
-              />
-            ) : (
-              <>
-                <boxGeometry />
-                <meshBasicMaterial color="blue" />
-              </>
-            )}
+            <primitive
+              object={obj}
+              position={[0, 2.5, -50]}
+              scale={[1.5, 1.5, 1.5]}
+            />
           </mesh>
           {/* <Plane color="black" size={{ width: 1, height: 1 }} /> */}
         </XR>
