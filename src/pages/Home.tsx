@@ -1,7 +1,7 @@
 // import { VRButton, XR, Controllers, Hands } from "@react-three/xr";
 import { VRButton, XR } from "@react-three/xr";
 import { Canvas } from "@react-three/fiber";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import { useLoader } from "@react-three/fiber";
 // import Plane from "@/components/3D/Plane";
 
