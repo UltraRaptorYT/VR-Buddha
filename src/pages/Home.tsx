@@ -18,7 +18,7 @@ function Home() {
           />
           {/* <Controllers />
           <Hands /> */}
-          <Plane color="black" size={{ width: 20, height: 20 }} />
+          <Plane color="black" size={{ width: 1, height: 1 }} />
           <mesh position={[0, 0, 0]} rotation={[0, 0, Math.PI / 4]}>
             <boxGeometry args={[5, 5]} />
             <meshBasicMaterial color="gold" />
