@@ -1,7 +1,7 @@
 // import { VRButton, XR, Controllers, Hands } from "@react-three/xr";
 import { VRButton, XR } from "@react-three/xr";
 import { Canvas } from "@react-three/fiber";
-import Plane from "@/components/3D/Plane";
+// import Plane from "@/components/3D/Plane";
 
 function Home() {
   return (
@@ -18,11 +18,11 @@ function Home() {
           />
           {/* <Controllers />
           <Hands /> */}
-          <Plane color="black" size={{ width: 1, height: 1 }} />
           <mesh position={[0, 0, 0]} rotation={[0, 0, Math.PI / 4]}>
             <boxGeometry args={[5, 5]} />
             <meshBasicMaterial color="gold" />
           </mesh>
+          {/* <Plane color="black" size={{ width: 1, height: 1 }} /> */}
         </XR>
       </Canvas>
     </>
