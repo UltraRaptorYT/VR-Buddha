@@ -14,7 +14,7 @@ function Home() {
   useEffect(() => {
     setTimeout(() => {
       setShowBuddha(true);
-    }, 1000);
+    }, 5000);
   }, []);
 
   return (
