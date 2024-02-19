@@ -45,19 +45,21 @@ function Home() {
           )}
 
           {[...new Array(100)].map((idx) => {
-            <mesh
-              key={"star" + idx}
-              position={[
-                generateNumber(100, -100),
-                generateNumber(100, -100),
-                generateNumber(100, -100),
-              ]}
-            >
-              <capsuleGeometry args={[8.5, 1, 8, 15]} />
-              <meshBasicMaterial color="white" />
-            </mesh>;
+            return (
+              <mesh
+                key={"star" + idx}
+                scale={[0.1, 0.1, 0.1]}
+                position={[
+                  generateNumber(100, -100),
+                  generateNumber(100, -100),
+                  generateNumber(100, -100),
+                ]}
+              >
+                <capsuleGeometry args={[8.5, 1, 8, 15]} />
+                <meshBasicMaterial color="white" />
+              </mesh>
+            );
           })}
-
           {/* <Plane color="black" size={{ width: 1, height: 1 }} /> */}
         </XR>
       </Canvas>
