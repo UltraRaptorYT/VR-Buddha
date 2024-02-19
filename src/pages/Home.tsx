@@ -12,6 +12,10 @@ function Home() {
   // const [showBuddha, setShowBuddha] = useState<boolean>(false);
   const buddhaOBJ = useLoader(OBJLoader, "/GuanYin.obj");
 
+  function generateNumber(max: number, min: number = 0) {
+    return Math.random() * max + min;
+  }
+
   return (
     <>
       <VRButton />
@@ -39,6 +43,20 @@ function Home() {
               scale={[1.5, 1.5, 1.5]}
             />
           )}
+
+          {[...new Array(100)].map((idx) => {
+            <mesh
+              key={"star" + idx}
+              position={[
+                generateNumber(100, -100),
+                generateNumber(100, -100),
+                generateNumber(100, -100),
+              ]}
+            >
+              <capsuleGeometry args={[8.5, 1, 8, 15]} />
+              <meshBasicMaterial color="white" />
+            </mesh>;
+          })}
 
           {/* <Plane color="black" size={{ width: 1, height: 1 }} /> */}
         </XR>
