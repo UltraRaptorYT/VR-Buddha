@@ -8,19 +8,19 @@ import { CubeTextureLoader } from "three";
 // import Plane from "@/components/3D/Plane";
 
 function SkyBox() {
-    const { scene } = useThree();
-    const loader = new CubeTextureLoader();
-    // The CubeTextureLoader load method takes an array of urls representing all 6 sides of the cube.
-    const texture = loader.load([
-      "/1.jpg",
-      "/2.jpg",
-      "/3.jpg",
-      "/4.jpg",
-      "/5.jpg",
-      "/6.jpg",
-    ]);
-    scene.background = texture;
-    return null;
+  const { scene } = useThree();
+  const loader = new CubeTextureLoader();
+  // The CubeTextureLoader load method takes an array of urls representing all 6 sides of the cube.
+  const texture = loader.load([
+    "/Nebula_V001.png",
+    "/Nebula_V002.png",
+    "/Nebula_V003.png",
+    "/Nebula_V004.png",
+    "/Nebula_V005.png",
+    "/Nebula_V006.png",
+  ]);
+  scene.background = texture;
+  return null;
 }
 
 function Home() {
