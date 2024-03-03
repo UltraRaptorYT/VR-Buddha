@@ -11,22 +11,22 @@ function SkyBox() {
   const { scene } = useThree();
   const loader = new CubeTextureLoader();
   // The CubeTextureLoader load method takes an array of urls representing all 6 sides of the cube.
-  // const texture = loader.load([
-  //   "/1.jpg",
-  //   "/2.jpg",
-  //   "/3.jpg",
-  //   "/4.jpg",
-  //   "/5.jpg",
-  //   "/6.jpg",
-  // ]);
   const texture = loader.load([
-    "/Nebula1.jpg",
-    "/Nebula2.jpg",
-    "/Nebula3.jpg",
-    "/Nebula4.jpg",
-    "/Nebula5.jpg",
-    "/Nebula6.jpg",
+    "/1.jpg",
+    "/2.jpg",
+    "/3.jpg",
+    "/4.jpg",
+    "/5.jpg",
+    "/6.jpg",
   ]);
+  // const texture = loader.load([
+  //   "/Nebula1.jpg",
+  //   "/Nebula2.jpg",
+  //   "/Nebula3.jpg",
+  //   "/Nebula4.jpg",
+  //   "/Nebula5.jpg",
+  //   "/Nebula6.jpg",
+  // ]);
   scene.background = texture;
   return null;
 }
