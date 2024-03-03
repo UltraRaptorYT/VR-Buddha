@@ -20,12 +20,12 @@ function SkyBox() {
   //   "/6.jpg",
   // ]);
   const texture = loader.load([
-    "/Nebula1.png",
-    "/Nebula2.png",
-    "/Nebula3.png",
-    "/Nebula4.png",
-    "/Nebula5.png",
-    "/Nebula6.png",
+    "/Nebula1.jpg",
+    "/Nebula2.jpg",
+    "/Nebula3.jpg",
+    "/Nebula4.jpg",
+    "/Nebula5.jpg",
+    "/Nebula6.jpg",
   ]);
   scene.background = texture;
   return null;
