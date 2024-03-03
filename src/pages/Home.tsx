@@ -12,12 +12,12 @@ function SkyBox() {
   const loader = new CubeTextureLoader();
   // The CubeTextureLoader load method takes an array of urls representing all 6 sides of the cube.
   const texture = loader.load([
-    "/Nebula_001.png",
-    "/Nebula_002.png",
-    "/Nebula_003.png",
-    "/Nebula_004.png",
-    "/Nebula_005.png",
-    "/Nebula_006.png",
+    "/Nebula1.png",
+    "/Nebula2.png",
+    "/Nebula3.png",
+    "/Nebula4.png",
+    "/Nebula5.png",
+    "/Nebula6.png",
   ]);
   scene.background = texture;
   return null;
