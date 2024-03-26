@@ -56,7 +56,7 @@ function Home() {
             intensity={1}
           />
           <SpotlightBeam
-            position={new THREE.Vector3(0, 1, 0)}
+            position={new THREE.Vector3(0, 10, -40)}
             rotation={new THREE.Euler(0, 45, 0)}
           />
           <mesh position={[0, 0.1, 0]}>
