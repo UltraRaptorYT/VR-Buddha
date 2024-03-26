@@ -23,6 +23,7 @@ interface SpotlightBeamProps {
   rotation: THREE.Euler;
   scale: THREE.Vector3;
   opacity: number;
+  color: string;
 }
 
 function SpotlightBeam({
@@ -30,11 +31,12 @@ function SpotlightBeam({
   rotation,
   scale,
   opacity,
+  color,
 }: SpotlightBeamProps) {
   return (
     <mesh position={position} rotation={rotation} scale={scale}>
       <coneGeometry args={[0.1, 1, 32]} />
-      <meshBasicMaterial color="white" transparent opacity={opacity} />
+      <meshBasicMaterial color={color} transparent opacity={opacity} />
     </mesh>
   );
 }
@@ -63,10 +65,11 @@ function Home() {
             intensity={1}
           />
           <SpotlightBeam
-            position={new THREE.Vector3(0, 0, -10)}
+            position={new THREE.Vector3(0, 10, -10)}
             rotation={new THREE.Euler(0, 50, 0)}
-            scale={new THREE.Vector3(2, 2, 2)}
+            scale={new THREE.Vector3(25, 25, 25)}
             opacity={0.5}
+            color={"yellow"}
           />
           <mesh position={[0, 0.1, 0]}>
             <boxGeometry />
