@@ -20,12 +20,12 @@ function SkyBox() {
   //   "/6.jpg",
   // ]);
   const texture = loader.load([
-    "/Nebula2.png",
     "/2.jpg",
     "/3.jpg",
     "/4.jpg",
     "/5.jpg",
     "/6.jpg",
+    "/1.jpg",
   ]);
   // const texture = loader.load([
   //   "/Nebula1.jpg",
