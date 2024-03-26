@@ -66,12 +66,12 @@ function Home() {
           />
           <SpotlightBeam
             position={new THREE.Vector3(0, 0, -20)}
-            rotation={new THREE.Euler(0, 0, 10)}
+            rotation={new THREE.Euler(0, 0, 45)}
             scale={new THREE.Vector3(50, 30, 50)}
             opacity={0.5}
             color={"yellow"}
           />
-          <mesh position={[0, 0.1, 0]}>
+          <mesh position={[10, 0.1, 0]}>
             <boxGeometry />
             <meshBasicMaterial color="gold" />
           </mesh>
