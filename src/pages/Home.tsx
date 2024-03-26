@@ -65,8 +65,8 @@ function Home() {
             intensity={1}
           />
           <SpotlightBeam
-            position={new THREE.Vector3(0, 0, -10)}
-            rotation={new THREE.Euler(0, -60, 0)}
+            position={new THREE.Vector3(0, 7.5, -5)}
+            rotation={new THREE.Euler(0, -75, 0)}
             scale={new THREE.Vector3(20, 20, 20)}
             opacity={0.5}
             color={"yellow"}
