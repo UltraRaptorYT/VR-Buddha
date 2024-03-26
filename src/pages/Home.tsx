@@ -28,7 +28,7 @@ function SpotlightBeam({ position, rotation }: SpotlightBeamProps) {
   return (
     <mesh position={position} rotation={rotation}>
       <coneGeometry args={[0.1, 1, 32]} />
-      <meshBasicMaterial color="#FFFFFFAA" />
+      <meshBasicMaterial color="white" opacity={0.5} />
     </mesh>
   );
 }
@@ -58,8 +58,8 @@ function Home() {
           />
           <SpotlightBeam
             position={new THREE.Vector3(0, 0, -10)}
-            rotation={new THREE.Euler(0, 45, 0)}
-            scale={new THREE.Vector3(5, 5, 5)}
+            rotation={new THREE.Euler(0, 0, 50)}
+            scale={new THREE.Vector3(15, 15, 15)}
           />
           <mesh position={[0, 0.1, 0]}>
             <boxGeometry />
