@@ -1,24 +1,11 @@
-// import { VRButton, XR, Controllers, Hands } from "@react-three/xr";
 import { VRButton, XR } from "@react-three/xr";
 import { Canvas, useLoader, useThree } from "@react-three/fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
-import { CubeTextureLoader } from "three";
-// import { useState, useEffect } from "react";
-// import { Group, Object3DEventMap } from "three";
-// import Plane from "@/components/3D/Plane";
+import * as THREE from "three";
 
 function SkyBox() {
   const { scene } = useThree();
-  const loader = new CubeTextureLoader();
-  // The CubeTextureLoader load method takes an array of urls representing all 6 sides of the cube.
-  // const texture = loader.load([
-  //   "/1.jpg",
-  //   "/OLD/2.jpg",
-  //   "/3.jpg",
-  //   "/4.jpg",
-  //   "/5.jpg",
-  //   "/6.jpg",
-  // ]);
+  const loader = new THREE.CubeTextureLoader();
   const texture = loader.load([
     "/2.jpg",
     "/3.jpg",
@@ -27,16 +14,17 @@ function SkyBox() {
     "/6.jpg",
     "/1.jpg",
   ]);
-  // const texture = loader.load([
-  //   "/Nebula1.jpg",
-  //   "/Nebula2.jpg",
-  //   "/Nebula3.jpg",
-  //   "/Nebula4.jpg",
-  //   "/Nebula5.jpg",
-  //   "/Nebula6.jpg",
-  // ]);
   scene.background = texture;
   return null;
+}
+
+function SpotlightBeam() {
+  return (
+    <mesh>
+      <coneGeometry args={[0.1, 1, 32]} />
+      <meshBasicMaterial color="white" />
+    </mesh>
+  );
 }
 
 function Home() {
@@ -62,8 +50,7 @@ function Home() {
             color={"white"}
             intensity={1}
           />
-          {/* <Controllers />
-          <Hands /> */}
+          <SpotlightBeam position={[0, 1, 0]} />
           <mesh position={[0, 0.1, 0]}>
             <boxGeometry />
             <meshBasicMaterial color="gold" />
@@ -76,23 +63,6 @@ function Home() {
             />
           )}
           <SkyBox />
-          {/* {[...new Array(100)].map((idx) => {
-            return (
-              <mesh
-                key={"star" + idx}
-                scale={[0.1, 0.1, 0.1]}
-                position={[
-                  generateNumber(100, -100),
-                  generateNumber(100, -100),
-                  generateNumber(100, -100),
-                ]}
-              >
-                <capsuleGeometry args={[8.5, 1, 8, 15]} />
-                <meshBasicMaterial color="white" />
-              </mesh>
-            );
-          })} */}
-          {/* <Plane color="black" size={{ width: 1, height: 1 }} /> */}
         </XR>
       </Canvas>
     </>
