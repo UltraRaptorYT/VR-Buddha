@@ -18,11 +18,16 @@ function SkyBox() {
   return null;
 }
 
-function SpotlightBeam({ position }: { position: THREE.Vector3 }) {
+interface SpotlightBeamProps {
+  position: THREE.Vector3;
+  rotation: THREE.Euler;
+}
+
+function SpotlightBeam({ position, rotation }: SpotlightBeamProps) {
   return (
-    <mesh position={position}>
+    <mesh position={position} rotation={rotation}>
       <coneGeometry args={[0.1, 1, 32]} />
-      <meshBasicMaterial color="white" />
+      <meshBasicMaterial color="#FFFFFFAA" />
     </mesh>
   );
 }
@@ -50,7 +55,10 @@ function Home() {
             color={"white"}
             intensity={1}
           />
-          <SpotlightBeam position={new THREE.Vector3(0, 1, 0)} />
+          <SpotlightBeam
+            position={new THREE.Vector3(0, 1, 0)}
+            rotation={new THREE.Euler(0, 45, 0)}
+          />
           <mesh position={[0, 0.1, 0]}>
             <boxGeometry />
             <meshBasicMaterial color="gold" />
