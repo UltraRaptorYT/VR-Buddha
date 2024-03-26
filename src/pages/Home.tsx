@@ -18,9 +18,9 @@ function SkyBox() {
   return null;
 }
 
-function SpotlightBeam() {
+function SpotlightBeam(position: THREE.Vector3) {
   return (
-    <mesh>
+    <mesh position={position}>
       <coneGeometry args={[0.1, 1, 32]} />
       <meshBasicMaterial color="white" />
     </mesh>
