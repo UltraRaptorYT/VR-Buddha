@@ -21,6 +21,7 @@ function SkyBox() {
 interface SpotlightBeamProps {
   position: THREE.Vector3;
   rotation: THREE.Euler;
+  scale: THREE.Vector3;
 }
 
 function SpotlightBeam({ position, rotation }: SpotlightBeamProps) {
@@ -56,8 +57,9 @@ function Home() {
             intensity={1}
           />
           <SpotlightBeam
-            position={new THREE.Vector3(0, 10, -40)}
+            position={new THREE.Vector3(0, 0, -10)}
             rotation={new THREE.Euler(0, 45, 0)}
+            scale={new THREE.Vector3(5, 5, 5)}
           />
           <mesh position={[0, 0.1, 0]}>
             <boxGeometry />
