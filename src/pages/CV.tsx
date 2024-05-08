@@ -57,7 +57,7 @@ export default function CV() {
         canvas.current.width = videoWidth;
         canvas.current.height = videoHeight;
 
-        drawKeypoints(poses["keypoints"], 0.45, ctx);
+        drawKeypoints(poses["keypoints"], 0.01, ctx);
         drawSkeleton(poses["keypoints"], 0.55, ctx);
       }
     }
