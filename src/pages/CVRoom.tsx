@@ -9,7 +9,7 @@ export default function CVRoom() {
 
   useEffect(() => {
     const localStream = canvasRef.current.captureStream();
-    console.log(localStream)
+    console.log(localStream);
   }, [canvasRef]);
 
   // <ViewerCard
@@ -22,13 +22,16 @@ export default function CVRoom() {
   // />;
 
   return (
-    <canvas
-      // The key attribute is required to create a new canvas when switching
-      // context mode
-      // key={props.segmentationConfig.pipeline}
-      ref={canvasRef}
-      width={width}
-      height={height}
-    />
+    <>
+      <canvas
+        // The key attribute is required to create a new canvas when switching
+        // context mode
+        // key={props.segmentationConfig.pipeline}
+        ref={canvasRef}
+        width={width}
+        height={height}
+      />
+      <div>{room_id}</div>
+    </>
   );
 }
