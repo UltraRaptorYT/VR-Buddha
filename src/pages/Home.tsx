@@ -65,7 +65,7 @@ function Home() {
             color={"white"}
             intensity={1}
           />
-          <Snow count={4000} />
+          <Snow count={1000} />
           <SpotlightBeam
             position={new THREE.Vector3(0, 0, -20)}
             rotation={new THREE.Euler(0, -45, 0)}
