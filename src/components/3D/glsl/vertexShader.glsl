@@ -20,7 +20,7 @@ void main() {
     float size = distanceFactor * 0.5;
 
     // Simulate snowflake motion with swag
-    vec3 particlePosition = simulateSwagSnow(position, 0.1, 0.1); // Adjusted speed and swayAmount
+    vec3 particlePosition = simulateSwagSnow(position, 1, 0.1); // Adjusted speed and swayAmount
 
     // Apply transformations
     vec4 modelPosition = modelMatrix * vec4(particlePosition, 1.0);
