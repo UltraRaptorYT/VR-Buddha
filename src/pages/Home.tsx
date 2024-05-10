@@ -80,7 +80,7 @@ function Home() {
           {buddhaOBJ && (
             <primitive
               object={buddhaOBJ}
-              position={[0, 0, -20]}
+              position={[0, 0, -40]}
               scale={[1.25, 1.25, 1.25]}
             />
           )}
