@@ -23,7 +23,7 @@ class CustomShaderMaterial extends THREE.ShaderMaterial {
   }
 }
 
-function Rain({ count }: { count: number }) {
+function Snow({ count }: { count: number }) {
   const radius = 2;
 
   const points = useRef<THREE.Points>(null);
@@ -60,7 +60,7 @@ function Rain({ count }: { count: number }) {
   useFrame((state) => {
     const { clock } = state;
     if (points.current) {
-      const material = points.current.material as CustomShaderMaterial; // Assert type
+      const material = points.current.material as CustomShaderMaterial;
       if (material.uniforms && material.uniforms.uTime) {
         material.uniforms.uTime.value = clock.elapsedTime;
       }
@@ -87,4 +87,4 @@ function Rain({ count }: { count: number }) {
   );
 }
 
-export default Rain;
+export default Snow;

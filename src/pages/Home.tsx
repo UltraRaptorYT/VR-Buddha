@@ -2,7 +2,7 @@ import { VRButton, XR } from "@react-three/xr";
 import { Canvas, useLoader, useThree } from "@react-three/fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import * as THREE from "three";
-import Rain from "@/components/3D/Rain";
+import Snow from "@/components/3D/Snow";
 
 function SkyBox() {
   const { scene } = useThree();
@@ -65,7 +65,7 @@ function Home() {
             color={"white"}
             intensity={1}
           />
-          <Rain count={4000} />
+          <Snow count={4000} />
           <SpotlightBeam
             position={new THREE.Vector3(0, 0, -20)}
             rotation={new THREE.Euler(0, -45, 0)}
