@@ -53,7 +53,12 @@ function Snow({ count }: { count: number }) {
   return (
     <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
       <sphereGeometry attach="geometry" args={[0.1, 0]} />
-      <meshBasicMaterial attach="material" color="gold" opacity={0.5} />
+      <meshBasicMaterial
+        attach="material"
+        color="gold"
+        transparent
+        opacity={0.8}
+      />
     </instancedMesh>
   );
 }
