@@ -1,38 +1,29 @@
-uniform float uTime;
-uniform float uRadius;
+// Uniforms
+uniform float uTime;  // Time uniform to control animation
+uniform mat4 uModelViewProjectionMatrix;  // Model-View-Projection matrix
 
-// Function to simulate snowfall with swag
-vec3 simulateSwagSnow(vec3 position, float speed, float swayAmount) {
-    // Calculate vertical motion with a sinusoidal oscillation
-    float y = position.y - uTime * 0.1 * sin(position.x * 0.1 + uTime * 0.1);
+// Attributes
+attribute vec3 aPosition;  // Vertex position
 
-    // Calculate horizontal drift/sway
-    float sway = sin(position.y * 0.1 + uTime * 0.1) * swayAmount;
-
-    return vec3(position.x + sway, y, position.z - uTime * speed); // Adjusted motion
-}
+// Varying
+varying float vAlpha;  // Alpha value for fading snowflakes
 
 void main() {
-    // Calculate distance from center
-    float distanceFactor = pow(uRadius - distance(position, vec3(0.0)), 1.5);
+    // Calculate the position of the vertex
+    vec3 position = aPosition;
 
-    // Calculate size of snowflakes based on distance
-    float size = distanceFactor * 0.5;
+    // Simulate falling snow effect
+    float speed = 0.1;  // Adjust the speed of falling snow
+    float scale = 0.01;  // Adjust the size of snowflakes
+    float offset = mod(position.y - uTime * speed, 2.0);  // Apply vertical movement
+    position.y = offset;
 
-    // Simulate snowflake motion with swag
-    vec3 particlePosition = simulateSwagSnow(position, 0.1, 0.1); // Adjusted speed and swayAmount
+    // Calculate alpha value for fading snowflakes based on their y position
+    vAlpha = 1.0 - smoothstep(0.0, 1.0, abs(position.y) / 2.0);
 
-    // Apply transformations
-    vec4 modelPosition = modelMatrix * vec4(particlePosition, 1.0);
-    vec4 viewPosition = viewMatrix * modelPosition;
-    vec4 projectedPosition = projectionMatrix * viewPosition;
+    // Apply the model-view-projection matrix to the vertex position
+    gl_Position = uModelViewProjectionMatrix * vec4(position, 1.0);
 
-    // Set final position
-    gl_Position = projectedPosition;
-
-    // Set point size based on distance
-    gl_PointSize = size;
-
-    // Size attenuation
-    gl_PointSize *= (1.0 / -viewPosition.z);
+    // Set the size of snowflakes
+    gl_PointSize = 10.0 * scale;
 }

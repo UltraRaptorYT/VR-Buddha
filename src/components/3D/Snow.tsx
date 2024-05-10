@@ -50,9 +50,6 @@ function Snow({ count }: { count: number }) {
       uTime: {
         value: 0.0,
       },
-      uRadius: {
-        value: radius,
-      },
     }),
     []
   );
@@ -71,7 +68,7 @@ function Snow({ count }: { count: number }) {
     <points ref={points}>
       <bufferGeometry>
         <bufferAttribute
-          attach="attributes-position"
+          attach="position"
           count={particlesPosition.length / 3}
           array={particlesPosition}
           itemSize={3}
