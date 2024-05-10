@@ -17,7 +17,7 @@ void main() {
     float distanceFactor = pow(uRadius - distance(position, vec3(0.0)), 1.5);
 
     // Calculate size of snowflakes based on distance
-    float size = distanceFactor * 3.0;
+    float size = distanceFactor * 2.0;
 
     // Simulate snowflake motion with swag
     vec3 particlePosition = simulateSwagSnow(position, 0.3, 0.2); // Adjusted speed and swayAmount
