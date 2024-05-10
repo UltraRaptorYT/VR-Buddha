@@ -1,89 +1,69 @@
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
-import vertexShader from "./glsl/vertexShader.glsl?raw";
-import fragmentShader from "./glsl/fragmentShader.glsl?raw";
-
-interface CustomShaderMaterialParameters
-  extends THREE.ShaderMaterialParameters {
-  uniforms?: {
-    [uniform: string]: { value: any };
-  };
-}
-
-class CustomShaderMaterial extends THREE.ShaderMaterial {
-  constructor(parameters?: CustomShaderMaterialParameters) {
-    super({
-      ...parameters,
-      uniforms: THREE.UniformsUtils.merge([
-        THREE.ShaderMaterial.prototype.uniforms,
-        parameters?.uniforms ?? {},
-      ]),
-    });
-  }
-}
 
 function Snow({ count }: { count: number }) {
-  const radius = 2;
+  const mesh = useRef<THREE.InstancedMesh<
+    THREE.BufferGeometry,
+    THREE.Material | THREE.Material[],
+    THREE.InstancedMeshEventMap
+  > | null>(null);
 
-  const points = useRef<THREE.Points>(null);
-  const particlesPosition = useMemo(() => {
-    const positions = new Float32Array(count * 3);
-
-    // for (let i = 0; i < count; i++) {
-    //   const distance = Math.sqrt(Math.random()) * radius;
-    //   const theta = THREE.MathUtils.randFloatSpread(360);
-    //   const phi = THREE.MathUtils.randFloatSpread(360);
-
-    //   let x = distance * Math.sin(theta) * Math.cos(phi);
-    //   let y = distance * Math.sin(theta) * Math.sin(phi);
-    //   let z = distance * Math.cos(theta);
-
-    //   positions.set([x, y, z], i * 3);
-    // }
-
-    return positions;
+  const dummy = useMemo(() => new THREE.Object3D(), []);
+  // Generate some random positions, speed factors and timings
+  const particles = useMemo(() => {
+    const temp = [];
+    for (let i = 0; i < count; i++) {
+      const t = Math.random() * 100;
+      const factor = 20 + Math.random() * 100;
+      const speed = 0.01 + Math.random() / 200;
+      const xFactor = -50 + Math.random() * 100;
+      const yFactor = -50 + Math.random() * 100;
+      const zFactor = -50 + Math.random() * 100;
+      temp.push({ t, factor, speed, xFactor, yFactor, zFactor, mx: 0, my: 0 });
+    }
+    return temp;
   }, [count]);
+  // The innards of this hook will run every frame
+  useFrame((_) => {
+    particles.forEach((particle, i) => {
+      let { t, factor, speed, xFactor, yFactor, zFactor } = particle;
+      t = particle.t += speed / 2;
+      const a = Math.cos(t) + Math.sin(t * 1) / 10;
+      const b = Math.sin(t) + Math.cos(t * 2) / 10;
+      const s = Math.cos(t);
 
-  const uniforms = useMemo(
-    () => ({
-      uTime: {
-        value: 0.0,
-      },
-      uRadius: {
-        value: radius,
-      },
-    }),
-    []
-  );
+      dummy.position.set(
+        (particle.mx / 10) * a +
+          xFactor +
+          Math.cos((t / 10) * factor) +
+          (Math.sin(t * 1) * factor) / 10,
+        (particle.my / 10) * b +
+          yFactor +
+          Math.sin((t / 10) * factor) +
+          (Math.cos(t * 2) * factor) / 10,
+        (particle.my / 10) * b +
+          zFactor +
+          Math.cos((t / 10) * factor) +
+          (Math.sin(t * 3) * factor) / 10
+      );
+      dummy.scale.set(s, s, s);
+      dummy.rotation.set(s * 5, s * 5, s * 5);
+      dummy.updateMatrix();
 
-  useFrame((state) => {
-    const { clock } = state;
-    if (points.current) {
-      const material = points.current.material as CustomShaderMaterial;
-      if (material.uniforms && material.uniforms.uTime) {
-        material.uniforms.uTime.value = clock.elapsedTime;
+      if (mesh.current) {
+        mesh.current.setMatrixAt(i, dummy.matrix);
       }
+    });
+    if (mesh.current) {
+      mesh.current.instanceMatrix.needsUpdate = true;
     }
   });
-
   return (
-    <points ref={points}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={particlesPosition.length / 3}
-          array={particlesPosition}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <shaderMaterial
-        depthWrite={false}
-        fragmentShader={fragmentShader}
-        vertexShader={vertexShader}
-        uniforms={uniforms}
-      />
-    </points>
+    <instancedMesh ref={mesh}>
+      <sphereGeometry args={[0.5, 32, 32]} />
+      <meshPhongMaterial attach="material" color="yellow" />
+    </instancedMesh>
   );
 }
 
