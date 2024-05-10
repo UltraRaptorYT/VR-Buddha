@@ -26,10 +26,14 @@ function Snow({ count }: { count: number }) {
   useFrame((_) => {
     particles.forEach((particle, i) => {
       let { t, xFactor, yFactor, zFactor } = particle;
-      t = particle.t += 0.001; // Adjust speed as needed
+      t = particle.t += 0.0001; // Adjust speed as needed
 
-      // Adjust y position to simulate falling
-      particle.yFactor -= 0.1; // Adjust the value as needed for the falling speed
+      // Adjust y position to simulate slower falling
+      particle.yFactor -= 0.05; // Decrease the value to slow down the snowfall
+
+      if (particle.yFactor < -50) {
+        particle.yFactor = 50 + Math.random() * 100; // Reset y position to top
+      }
 
       dummy.position.set(
         xFactor + Math.cos(t / 10) + Math.sin(t * 1) / 10,
@@ -46,10 +50,9 @@ function Snow({ count }: { count: number }) {
       mesh.current.instanceMatrix.needsUpdate = true;
     }
   });
-
   return (
     <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
-      <sphereGeometry attach="geometry" args={[0.075, 0]} />
+      <sphereGeometry attach="geometry" args={[0.1, 0]} />
       <meshBasicMaterial attach="material" color="gold" opacity={0.5} />
     </instancedMesh>
   );
