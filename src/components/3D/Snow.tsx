@@ -61,7 +61,7 @@ function Snow({ count }: { count: number }) {
   });
   return (
     <instancedMesh ref={mesh}>
-      <sphereGeometry args={[0.5, 32, 32]} />
+      <sphereGeometry attach="geometry" args={[0.2, 0]} />
       <meshPhongMaterial attach="material" color="yellow" />
     </instancedMesh>
   );
