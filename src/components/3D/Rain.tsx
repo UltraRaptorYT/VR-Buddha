@@ -4,7 +4,8 @@ import { useFrame } from "@react-three/fiber";
 import vertexShader from "./glsl/vertexShader.glsl?raw";
 import fragmentShader from "./glsl/fragmentShader.glsl?raw";
 
-interface CustomShaderMaterialParameters extends THREE.ShaderMaterialParameters {
+interface CustomShaderMaterialParameters
+  extends THREE.ShaderMaterialParameters {
   uniforms?: {
     [uniform: string]: { value: any };
   };

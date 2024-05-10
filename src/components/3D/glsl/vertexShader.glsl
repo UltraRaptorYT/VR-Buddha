@@ -1,30 +1,33 @@
 uniform float uTime;
 uniform float uRadius;
 
-// Source: https://github.com/dmnsgn/glsl-rotate/blob/main/rotation-3d-y.glsl.js
-mat3 rotation3dY(float angle) {
-  float s = sin(angle);
-  float c = cos(angle);
-  return mat3(
-    c, 0.0, -s,
-    0.0, 1.0, 0.0,
-    s, 0.0, c
-  );
+// Function to simulate vertical motion of raindrops
+vec3 simulateRain(vec3 position, float speed) {
+    float y = mod(position.y - uTime * speed, uRadius * 2.0);
+    return vec3(position.x, y, position.z);
 }
 
-
 void main() {
-  float distanceFactor = pow(uRadius - distance(position, vec3(0.0)), 1.5);
-  float size = distanceFactor * 1.5 + 3.0;
-  vec3 particlePosition = position * rotation3dY(uTime * 0.3 * distanceFactor);
+    // Calculate distance from center
+    float distanceFactor = pow(uRadius - distance(position, vec3(0.0)), 1.5);
 
-  vec4 modelPosition = modelMatrix * vec4(particlePosition, 1.0);
-  vec4 viewPosition = viewMatrix * modelPosition;
-  vec4 projectedPosition = projectionMatrix * viewPosition;
+    // Calculate size of raindrops based on distance
+    float size = distanceFactor * 0.5;
 
-  gl_Position = projectedPosition;
+    // Simulate raindrop motion
+    vec3 particlePosition = simulateRain(position, 10.0);
 
-  gl_PointSize = size;
-  // Size attenuation;
-  gl_PointSize *= (1.0 / - viewPosition.z);
+    // Apply transformations
+    vec4 modelPosition = modelMatrix * vec4(particlePosition, 1.0);
+    vec4 viewPosition = viewMatrix * modelPosition;
+    vec4 projectedPosition = projectionMatrix * viewPosition;
+
+    // Set final position
+    gl_Position = projectedPosition;
+
+    // Set point size based on distance
+    gl_PointSize = size;
+
+    // Size attenuation
+    gl_PointSize *= (1.0 / -viewPosition.z);
 }
