@@ -1,21 +1,26 @@
 uniform float uTime;
 uniform float uRadius;
 
-// Function to simulate vertical motion of raindrops
-vec3 simulateRain(vec3 position, float speed) {
-    float y = mod(position.y - uTime * speed, uRadius * 2.0);
-    return vec3(position.x, y, position.z);
+// Function to simulate snowfall with swag
+vec3 simulateSwagSnow(vec3 position, float speed, float swayAmount) {
+    // Calculate vertical motion with a sinusoidal oscillation
+    float y = position.y - uTime * 0.1 * sin(position.x * 0.1 + uTime * 0.1);
+
+    // Calculate horizontal drift/sway
+    float sway = sin(position.y * 0.1 + uTime * 0.1) * swayAmount;
+
+    return vec3(position.x + sway, y, position.z - uTime * speed); // Adjusted motion
 }
 
 void main() {
     // Calculate distance from center
     float distanceFactor = pow(uRadius - distance(position, vec3(0.0)), 1.5);
 
-    // Calculate size of raindrops based on distance
+    // Calculate size of snowflakes based on distance
     float size = distanceFactor * 0.5;
 
-    // Simulate raindrop motion
-    vec3 particlePosition = simulateRain(position, 10.0);
+    // Simulate snowflake motion with swag
+    vec3 particlePosition = simulateSwagSnow(position, 0.1, 0.1); // Adjusted speed and swayAmount
 
     // Apply transformations
     vec4 modelPosition = modelMatrix * vec4(particlePosition, 1.0);
