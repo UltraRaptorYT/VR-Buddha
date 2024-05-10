@@ -30,17 +30,17 @@ function Snow({ count }: { count: number }) {
   const particlesPosition = useMemo(() => {
     const positions = new Float32Array(count * 3);
 
-    for (let i = 0; i < count; i++) {
-      const distance = Math.sqrt(Math.random()) * radius;
-      const theta = THREE.MathUtils.randFloatSpread(360);
-      const phi = THREE.MathUtils.randFloatSpread(360);
+    // for (let i = 0; i < count; i++) {
+    //   const distance = Math.sqrt(Math.random()) * radius;
+    //   const theta = THREE.MathUtils.randFloatSpread(360);
+    //   const phi = THREE.MathUtils.randFloatSpread(360);
 
-      let x = distance * Math.sin(theta) * Math.cos(phi);
-      let y = distance * Math.sin(theta) * Math.sin(phi);
-      let z = distance * Math.cos(theta);
+    //   let x = distance * Math.sin(theta) * Math.cos(phi);
+    //   let y = distance * Math.sin(theta) * Math.sin(phi);
+    //   let z = distance * Math.cos(theta);
 
-      positions.set([x, y, z], i * 3);
-    }
+    //   positions.set([x, y, z], i * 3);
+    // }
 
     return positions;
   }, [count]);

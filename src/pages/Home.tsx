@@ -80,8 +80,8 @@ function Home() {
           {buddhaOBJ && (
             <primitive
               object={buddhaOBJ}
-              position={[0, 0, -50]}
-              scale={[1.5, 1.5, 1.5]}
+              position={[0, 0, -20]}
+              scale={[1.25, 1.25, 1.25]}
             />
           )}
           <SkyBox />
