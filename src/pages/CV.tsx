@@ -59,6 +59,16 @@ export default function CV() {
 
         drawKeypoints(poses["keypoints"], 0.01, ctx);
         drawSkeleton(poses["keypoints"], 0.55, ctx);
+        // console.log(poses["keypoints"]);
+        // Check Kneeling
+        if (
+          // poses["keypoints"][13].x < poses["keypoints"][15].x &&
+          poses["keypoints"][13].y < poses["keypoints"][15].y &&
+          // poses["keypoints"][14].x < poses["keypoints"][16].x &&
+          poses["keypoints"][14].y < poses["keypoints"][16].y
+        ) {
+          console.log("KNEELING");
+        }
       }
     }
   };
