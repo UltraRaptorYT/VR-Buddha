@@ -15,9 +15,9 @@ function Snow({ count }: { count: number }) {
     const temp = [];
     for (let i = 0; i < count; i++) {
       const t = Math.random() * 100;
-      const xFactor = -50 + Math.random() * 50;
+      const xFactor = Math.random() * 50;
       const yFactor = 0 + Math.random() * 50; // Adjust yFactor for upward initial movement
-      const zFactor = -50 + Math.random() * 50;
+      const zFactor = Math.random() * 50;
       const speed = Math.random() * 0.1; // Decrease the value to slow down the snowfall
       temp.push({ t, xFactor, yFactor, zFactor, speed });
     }
@@ -33,7 +33,7 @@ function Snow({ count }: { count: number }) {
       particle.yFactor -= speed;
 
       if (particle.yFactor < -50) {
-        particle.yFactor = 50 + Math.random() * 100; // Reset y position to top
+        particle.yFactor = Math.random() * 50; // Reset y position to top
       }
 
       // Add rotation and sway to the snow particles
