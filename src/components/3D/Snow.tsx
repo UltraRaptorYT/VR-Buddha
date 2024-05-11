@@ -33,7 +33,7 @@ function Snow({ count }: { count: number }) {
       particle.yFactor -= speed;
 
       if (particle.yFactor < -50) {
-        particle.yFactor = Math.random() * 50; // Reset y position to top
+        particle.yFactor = 0 + Math.random() * 50; // Reset y position to top
       }
 
       // Add rotation and sway to the snow particles
