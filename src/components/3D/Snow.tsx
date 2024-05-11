@@ -16,30 +16,37 @@ function Snow({ count }: { count: number }) {
     for (let i = 0; i < count; i++) {
       const t = Math.random() * 100;
       const xFactor = -50 + Math.random() * 100;
-      const yFactor = 50 + Math.random() * 100; // Adjust yFactor for upward initial movement
+      const yFactor = 0 + Math.random() * 100; // Adjust yFactor for upward initial movement
       const zFactor = -50 + Math.random() * 100;
-      temp.push({ t, xFactor, yFactor, zFactor });
+      const speed = Math.random() * 0.01; // Decrease the value to slow down the snowfall
+      temp.push({ t, xFactor, yFactor, zFactor, speed });
     }
     return temp;
   }, [count]);
   // The innards of this hook will run every frame
   useFrame((_) => {
     particles.forEach((particle, i) => {
-      let { t, xFactor, yFactor, zFactor } = particle;
+      let { t, xFactor, yFactor, zFactor, speed } = particle;
       t = particle.t += 0.0001; // Adjust speed as needed
 
       // Adjust y position to simulate slower falling
-      particle.yFactor -= 0.05; // Decrease the value to slow down the snowfall
+      particle.yFactor -= speed;
 
       if (particle.yFactor < -50) {
         particle.yFactor = 50 + Math.random() * 100; // Reset y position to top
       }
 
+      // Add rotation and sway to the snow particles
+      const rotationFactor = Math.sin(t / 20) * 0.05;
+      const swayFactorX = Math.sin(t / 8) * 55; // Increased sway on X axis
+      const swayFactorZ = Math.cos(t / 8) * 55; // Increased sway on Z axis
+
       dummy.position.set(
-        xFactor + Math.cos(t / 10) + Math.sin(t * 1) / 10,
+        xFactor + Math.cos(t / 10) + Math.sin(t * 1) / 10 + swayFactorX,
         yFactor,
-        zFactor + Math.sin(t / 10) + Math.cos(t * 2) / 10
+        zFactor + Math.sin(t / 10) + Math.cos(t * 2) / 10 + swayFactorZ
       );
+      dummy.rotation.set(rotationFactor, rotationFactor, rotationFactor);
       dummy.updateMatrix();
 
       if (mesh.current) {
@@ -57,7 +64,7 @@ function Snow({ count }: { count: number }) {
         attach="material"
         color="gold"
         transparent
-        opacity={0.8}
+        opacity={0.5}
       />
     </instancedMesh>
   );

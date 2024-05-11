@@ -70,7 +70,7 @@ function Home() {
             position={new THREE.Vector3(0, 0, -20)}
             rotation={new THREE.Euler(0, -45, 0)}
             scale={new THREE.Vector3(50, 30, 50)}
-            opacity={0.8}
+            opacity={0.5}
             color={"yellow"}
           />
           {/* <mesh position={[10, 0.1, 0]}>
