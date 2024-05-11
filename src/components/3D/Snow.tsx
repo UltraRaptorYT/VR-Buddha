@@ -18,7 +18,7 @@ function Snow({ count }: { count: number }) {
       const xFactor = -50 + Math.random() * 100;
       const yFactor = 0 + Math.random() * 100; // Adjust yFactor for upward initial movement
       const zFactor = -50 + Math.random() * 100;
-      const speed = Math.random() * 0.5; // Decrease the value to slow down the snowfall
+      const speed = Math.random() * 0.1; // Decrease the value to slow down the snowfall
       temp.push({ t, xFactor, yFactor, zFactor, speed });
     }
     return temp;
