@@ -58,7 +58,11 @@ function Snow({ count }: { count: number }) {
     }
   });
   return (
-    <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
+    <instancedMesh
+      ref={mesh}
+      args={[undefined, undefined, count]}
+      position={[0, 0, 0]}
+    >
       <sphereGeometry attach="geometry" args={[0.1, 0]} />
       <meshBasicMaterial
         attach="material"
