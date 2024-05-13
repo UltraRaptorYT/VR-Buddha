@@ -5,6 +5,7 @@ import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import * as THREE from "three";
 import Snow from "@/components/3D/Snow";
 import Buddha from "@/components/3D/Buddha";
+import SpotlightBeam from "@/components/3D/SpotlightBeam";
 
 function SkyBox() {
   const { scene } = useThree();
@@ -19,29 +20,6 @@ function SkyBox() {
   ]);
   scene.background = texture;
   return null;
-}
-
-interface SpotlightBeamProps {
-  position: THREE.Vector3;
-  rotation: THREE.Euler;
-  scale: THREE.Vector3;
-  opacity: number;
-  color: string;
-}
-
-function SpotlightBeam({
-  position,
-  rotation,
-  scale,
-  opacity,
-  color,
-}: SpotlightBeamProps) {
-  return (
-    <mesh position={position} rotation={rotation} scale={scale}>
-      <coneGeometry args={[0.1, 1, 32]} />
-      <meshBasicMaterial color={color} transparent opacity={opacity} />
-    </mesh>
-  );
 }
 
 function Home() {
@@ -70,9 +48,11 @@ function Home() {
             />
             <Snow count={6000} />
             <SpotlightBeam
-              position={new THREE.Vector3(0, 0, -20)}
-              rotation={new THREE.Euler(0, -45, 0)}
-              scale={new THREE.Vector3(50, 30, 50)}
+              meshProps={{
+                position: [0, 0, -20],
+                rotation: [0, -45, 0],
+                scale: [50, 30, 50],
+              }}
               opacity={0.5}
               color={"yellow"}
             />
@@ -81,13 +61,13 @@ function Home() {
             <meshBasicMaterial color="gold" />
           </mesh> */}
             <Buddha />
-            {buddhaOBJ && (
+            {/* {buddhaOBJ && (
               <primitive
                 object={buddhaOBJ}
                 position={[0, 0, -50]}
                 scale={[1.25, 1.25, 1.25]}
               />
-            )}
+            )} */}
             <SkyBox />
           </XR>
         </Suspense>
