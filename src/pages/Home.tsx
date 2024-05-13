@@ -25,7 +25,6 @@ function SkyBox() {
 function Home() {
   // const [buddhaOBJ, setBuddhaOBJ] = useState<Group<Object3DEventMap> | null>(
   // const [showBuddha, setShowBuddha] = useState<boolean>(false);
-  const buddhaOBJ = useLoader(OBJLoader, "/GuanYin.obj");
 
   // function generateNumber(max: number, min: number = 0) {
   //   return Math.random() * max + min;
