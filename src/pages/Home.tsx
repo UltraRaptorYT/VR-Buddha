@@ -53,7 +53,7 @@ function Home() {
                 rotation: [0, -45, 0],
                 scale: [50, 30, 50],
               }}
-              opacity={0.5}
+              opacity={0}
               color={"yellow"}
             />
             {/* <mesh position={[10, 0.1, 0]}>
