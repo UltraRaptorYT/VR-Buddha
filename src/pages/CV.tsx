@@ -9,7 +9,7 @@ export default function CV() {
   let width = 960;
   let height = 720;
   let kneelAngle = 105;
-  let prayHandDistance = 25;
+  // let prayHandDistance = 25;
   const webcamRef = useRef<Webcam>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 

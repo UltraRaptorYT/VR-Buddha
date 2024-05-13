@@ -1,8 +1,10 @@
+import { Suspense } from "react";
 import { VRButton, XR } from "@react-three/xr";
 import { Canvas, useLoader, useThree } from "@react-three/fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import * as THREE from "three";
 import Snow from "@/components/3D/Snow";
+import Buddha from "@/components/3D/Buddha";
 
 function SkyBox() {
   const { scene } = useThree();
@@ -55,37 +57,40 @@ function Home() {
     <>
       <VRButton />
       <Canvas>
-        <XR>
-          <ambientLight intensity={0.055} color={"gold"} />
-          {/* <pointLight position={[0.5, 0.5, 0.5]} /> */}
-          <directionalLight
-            castShadow
-            position={[0.1, 0.1, 0.1]}
-            shadow-mapSize-width={1024}
-            color={"white"}
-            intensity={1}
-          />
-          <Snow count={6000} />
-          <SpotlightBeam
-            position={new THREE.Vector3(0, 0, -20)}
-            rotation={new THREE.Euler(0, -45, 0)}
-            scale={new THREE.Vector3(50, 30, 50)}
-            opacity={0.5}
-            color={"yellow"}
-          />
-          {/* <mesh position={[10, 0.1, 0]}>
+        <Suspense fallback={null}>
+          <XR>
+            <ambientLight intensity={0.055} color={"gold"} />
+            {/* <pointLight position={[0.5, 0.5, 0.5]} /> */}
+            <directionalLight
+              castShadow
+              position={[0.1, 0.1, 0.1]}
+              shadow-mapSize-width={1024}
+              color={"white"}
+              intensity={1}
+            />
+            <Snow count={6000} />
+            <SpotlightBeam
+              position={new THREE.Vector3(0, 0, -20)}
+              rotation={new THREE.Euler(0, -45, 0)}
+              scale={new THREE.Vector3(50, 30, 50)}
+              opacity={0.5}
+              color={"yellow"}
+            />
+            {/* <mesh position={[10, 0.1, 0]}>
             <boxGeometry />
             <meshBasicMaterial color="gold" />
           </mesh> */}
-          {buddhaOBJ && (
-            <primitive
-              object={buddhaOBJ}
-              position={[0, 0, -50]}
-              scale={[1.25, 1.25, 1.25]}
-            />
-          )}
-          <SkyBox />
-        </XR>
+            <Buddha />
+            {buddhaOBJ && (
+              <primitive
+                object={buddhaOBJ}
+                position={[0, 0, -50]}
+                scale={[1.25, 1.25, 1.25]}
+              />
+            )}
+            <SkyBox />
+          </XR>
+        </Suspense>
       </Canvas>
     </>
   );
