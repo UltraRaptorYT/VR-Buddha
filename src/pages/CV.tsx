@@ -109,16 +109,16 @@ export default function CV() {
           console.log(poses.keypoints);
         }
 
-        // Hand Together
-        let handDistance = calculateDistance(
-          poses.keypoints[10],
-          poses.keypoints[9]
-        );
-        console.log(handDistance);
-        if (handDistance <= prayHandDistance) {
-          console.log("Palms together");
-          color = "red";
-        }
+        // // Palms Together
+        // let handDistance = calculateDistance(
+        //   poses.keypoints[10],
+        //   poses.keypoints[9]
+        // );
+        // console.log(handDistance);
+        // if (handDistance <= prayHandDistance) {
+        //   console.log("Palms together");
+        //   color = "red";
+        // }
 
         drawKeypoints(poses.keypoints, 0.01, ctx, 1, color);
         drawSkeleton(poses.keypoints, 0.55, ctx, 1, color);
