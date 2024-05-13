@@ -2,7 +2,7 @@ import { useMemo, useRef } from "react";
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 
-function Snow({ count }: { count: number }) {
+function Snow({ count, hide = false }: { count: number; hide?: boolean }) {
   const mesh = useRef<THREE.InstancedMesh<
     THREE.BufferGeometry,
     THREE.Material | THREE.Material[],
@@ -61,6 +61,7 @@ function Snow({ count }: { count: number }) {
       ref={mesh}
       args={[undefined, undefined, count]}
       position={[0, 0, 0]}
+      scale={hide ? 0 : 1}
     >
       <sphereGeometry attach="geometry" args={[0.1, 0]} />
       <meshBasicMaterial

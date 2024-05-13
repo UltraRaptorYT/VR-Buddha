@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { VRButton, XR } from "@react-three/xr";
 import { Canvas, useThree } from "@react-three/fiber"; // useLoader
 // import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
@@ -23,6 +23,7 @@ function SkyBox() {
 }
 
 function Home() {
+  const [showOffering, setShowOffering] = useState<boolean>(false);
   // const [buddhaOBJ, setBuddhaOBJ] = useState<Group<Object3DEventMap> | null>(
   // const [showBuddha, setShowBuddha] = useState<boolean>(false);
   // const buddhaOBJ = useLoader(OBJLoader, "/GuanYin.obj");
@@ -30,6 +31,12 @@ function Home() {
   // function generateNumber(max: number, min: number = 0) {
   //   return Math.random() * max + min;
   // }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowOffering(true);
+    }, 5000);
+  }, []);
 
   return (
     <>
@@ -46,7 +53,7 @@ function Home() {
               color={"white"}
               intensity={1}
             />
-            <Snow count={6000} />
+            <Snow count={6000} hide={showOffering} />
             <SpotlightBeam
               meshProps={{
                 position: [0, 0, -20],
