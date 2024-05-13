@@ -9,6 +9,7 @@ export default function CV() {
   let width = 960;
   let height = 720;
   let kneelAngle = 105;
+  let prayHandDistance = 25;
   const webcamRef = useRef<Webcam>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -105,6 +106,18 @@ export default function CV() {
         ) {
           console.log("KNEELING");
           color = "pink";
+          console.log(poses.keypoints);
+        }
+
+        // Hand Together
+        let handDistance = calculateDistance(
+          poses.keypoints[10],
+          poses.keypoints[9]
+        );
+        console.log(handDistance);
+        if (handDistance <= prayHandDistance) {
+          console.log("Palms together");
+          color = "red";
         }
 
         drawKeypoints(poses.keypoints, 0.01, ctx, 1, color);
