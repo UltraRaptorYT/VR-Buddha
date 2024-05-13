@@ -8,6 +8,7 @@ import { drawKeypoints, drawSkeleton } from "@/lib/pose_utils";
 export default function CV() {
   let width = 960;
   let height = 720;
+  let kneelAngle = 105;
   const webcamRef = useRef<Webcam>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
@@ -43,6 +44,33 @@ export default function CV() {
       drawCanvas(poses[0], video, videoWidth, videoHeight, canvasRef);
     }
   }
+  type Coordinate = {
+    x: number;
+    y: number;
+  };
+
+  const degreesToRads = (deg: number) => (deg * Math.PI) / 180.0;
+  // const radsToDegrees = (rad: number) => (rad * 180.0) / Math.PI;
+
+  const calculateDistance = (
+    point1: Coordinate,
+    point2: Coordinate
+  ): number => {
+    if (point1 && point2) {
+      return Math.sqrt((point1.x - point2.x) ** 2 + (point1.y - point2.y) ** 2);
+    } else {
+      return 0;
+    }
+  };
+
+  const cosineRule = (x: Coordinate, y: Coordinate, z: Coordinate): number => {
+    let a = calculateDistance(x, z);
+    let b = calculateDistance(y, z);
+    let c = calculateDistance(x, y);
+
+    let angle = Math.acos((b ** 2 + c ** 2 - a ** 2) / (2 * b * c));
+    return angle;
+  };
 
   const drawCanvas = (
     poses: poseDetection.Pose,
@@ -56,19 +84,31 @@ export default function CV() {
       if (ctx) {
         canvas.current.width = videoWidth;
         canvas.current.height = videoHeight;
+        let color = "aqua";
 
-        drawKeypoints(poses["keypoints"], 0.01, ctx);
-        drawSkeleton(poses["keypoints"], 0.55, ctx);
-        // console.log(poses["keypoints"]);
         // Check Kneeling
+        let leftLegRadAngle = cosineRule(
+          poses.keypoints[11],
+          poses.keypoints[13],
+          poses.keypoints[15]
+        );
+
+        let rightLegRadAngle = cosineRule(
+          poses.keypoints[12],
+          poses.keypoints[14],
+          poses.keypoints[16]
+        );
+
         if (
-          // poses["keypoints"][13].x < poses["keypoints"][15].x &&
-          poses["keypoints"][13].y < poses["keypoints"][15].y &&
-          // poses["keypoints"][14].x < poses["keypoints"][16].x &&
-          poses["keypoints"][14].y < poses["keypoints"][16].y
+          leftLegRadAngle < degreesToRads(kneelAngle) &&
+          rightLegRadAngle < degreesToRads(kneelAngle)
         ) {
           console.log("KNEELING");
+          color = "pink";
         }
+
+        drawKeypoints(poses.keypoints, 0.01, ctx, 1, color);
+        drawSkeleton(poses.keypoints, 0.55, ctx, 1, color);
       }
     }
   };

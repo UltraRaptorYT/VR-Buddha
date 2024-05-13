@@ -1,7 +1,6 @@
 import * as poseDetection from "@tensorflow-models/pose-detection";
 // import * as tf from "@tensorflow/tfjs-core";
 
-const color = "aqua";
 // const color = "pink";
 // const boundingBoxColor = "red";
 const lineWidth = 2;
@@ -131,7 +130,8 @@ export function drawSkeleton(
   keypoints: poseDetection.Keypoint[],
   minConfidence: number,
   ctx: CanvasRenderingContext2D,
-  scale = 1
+  scale = 1,
+  color = "aqua"
 ) {
   const adjacentKeyPoints = getAdjacentKeyPoints(keypoints, minConfidence);
   adjacentKeyPoints.forEach((point) => {
@@ -152,7 +152,8 @@ export function drawKeypoints(
   keypoints: poseDetection.Keypoint[],
   minConfidence: number,
   ctx: CanvasRenderingContext2D,
-  scale = 1
+  scale = 1,
+  color = "aqua"
 ) {
   for (let i = 0; i < keypoints.length; i++) {
     const keypoint = keypoints[i];
