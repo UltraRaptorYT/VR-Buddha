@@ -18,7 +18,7 @@ function Snow({ count }: { count: number }) {
       const xFactor = -25 + Math.random() * 75;
       const yFactor = 0 + Math.random() * 100; // Adjust yFactor for upward initial movement
       const zFactor = -25 + Math.random() * 75;
-      const speed = Math.random() * 0.1; // Decrease the value to slow down the snowfall
+      const speed = Math.random() * 0.01; // Decrease the value to slow down the snowfall
       temp.push({ t, xFactor, yFactor, zFactor, speed });
     }
     return temp;
@@ -40,11 +40,10 @@ function Snow({ count }: { count: number }) {
       const rotationFactor = Math.sin(t / 20) * 0.05;
       const swayFactorX = Math.sin(t / 8) * 0.5; // Increased sway on X axis
       const swayFactorZ = Math.cos(t / 8) * 0.5; // Increased sway on Z axis
-
       dummy.position.set(
-        xFactor + Math.cos(t / 10) + Math.sin(t * 1) / 10 + swayFactorX,
+        xFactor + Math.cos(t / 10) + Math.sin(t * 1) / 10 + swayFactorX * 10,
         yFactor,
-        zFactor + Math.sin(t / 10) + Math.cos(t * 2) / 10 + swayFactorZ
+        zFactor + Math.sin(t / 10) + Math.cos(t * 2) / 10 + swayFactorZ * 10
       );
       dummy.rotation.set(rotationFactor, rotationFactor, rotationFactor);
       dummy.updateMatrix();
