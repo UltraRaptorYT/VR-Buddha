@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { VRButton, XR } from "@react-three/xr";
-import { Canvas, useLoader, useThree } from "@react-three/fiber";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
+import { Canvas, useThree } from "@react-three/fiber"; // useLoader
+// import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import * as THREE from "three";
 import Snow from "@/components/3D/Snow";
 import Buddha from "@/components/3D/Buddha";
@@ -25,6 +25,7 @@ function SkyBox() {
 function Home() {
   // const [buddhaOBJ, setBuddhaOBJ] = useState<Group<Object3DEventMap> | null>(
   // const [showBuddha, setShowBuddha] = useState<boolean>(false);
+  // const buddhaOBJ = useLoader(OBJLoader, "/GuanYin.obj");
 
   // function generateNumber(max: number, min: number = 0) {
   //   return Math.random() * max + min;
