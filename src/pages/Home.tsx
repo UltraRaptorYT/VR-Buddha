@@ -24,17 +24,10 @@ function SkyBox() {
 
 function Home() {
   const [showOffering, setShowOffering] = useState<boolean>(false);
-  // const [buddhaOBJ, setBuddhaOBJ] = useState<Group<Object3DEventMap> | null>(
-  // const [showBuddha, setShowBuddha] = useState<boolean>(false);
-  // const buddhaOBJ = useLoader(OBJLoader, "/GuanYin.obj");
-
-  // function generateNumber(max: number, min: number = 0) {
-  //   return Math.random() * max + min;
-  // }
 
   useEffect(() => {
     setTimeout(() => {
-      setShowOffering(true);
+      setShowOffering(false);
     }, 5000);
   }, []);
 
@@ -58,10 +51,12 @@ function Home() {
               meshProps={{
                 position: [0, 0, -20],
                 rotation: [0, -45, 0],
-                scale: [50, 30, 50],
               }}
-              opacity={0}
+              opacity={0.1}
               color={"yellow"}
+              startScale={[50, 30, 50]}
+              endScale={[50, 50, 50]}
+              expand={showOffering}
             />
             {/* <mesh position={[10, 0.1, 0]}>
             <boxGeometry />
