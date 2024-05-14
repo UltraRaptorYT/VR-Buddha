@@ -4,7 +4,7 @@ import { Canvas, useThree } from "@react-three/fiber"; // useLoader
 // import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import * as THREE from "three";
 import Snow from "@/components/3D/Snow";
-import Buddha from "@/components/3D/Buddha";
+// import Buddha from "@/components/3D/Buddha";
 import SpotlightBeam from "@/components/3D/SpotlightBeam";
 
 function SkyBox() {
