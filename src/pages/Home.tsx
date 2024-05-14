@@ -52,7 +52,7 @@ function Home() {
                 position: [0, 0, -20],
                 rotation: [0, -45, 0],
               }}
-              opacity={0.1}
+              opacity={0.5}
               color={"yellow"}
               startScale={[50, 30, 50]}
               endScale={[50, 50, 50]}
