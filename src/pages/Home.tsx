@@ -62,7 +62,7 @@ function Home() {
             <boxGeometry />
             <meshBasicMaterial color="gold" />
           </mesh> */}
-            <Buddha position={[0, -5, -50]} scale={[0.9, 0.9, 0.9]} />
+            {/* <Buddha position={[0, -5, -50]} scale={[0.9, 0.9, 0.9]} /> */}
             {/* {buddhaOBJ && (
               <primitive
                 object={buddhaOBJ}
