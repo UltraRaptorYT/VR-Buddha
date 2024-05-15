@@ -57,7 +57,7 @@ function Home() {
               startPosition={[0, 0, -20]}
               endPosition={[0, 0, -20]}
               startScale={[5, 1, 5]}
-              endScale={[5, 305, 5]}
+              endScale={[5, 505, 5]}
               expand={showOffering}
             />
             {/* <mesh position={[10, 0.1, 0]}>
