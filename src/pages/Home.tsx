@@ -54,8 +54,8 @@ function Home() {
               }}
               opacity={0.5}
               color={"yellow"}
-              startScale={[50, 30, 50]}
-              endScale={[50, 50, 50]}
+              startScale={[5, 3, 5]}
+              endScale={[5, 5, 5]}
               expand={showOffering}
             />
             {/* <mesh position={[10, 0.1, 0]}>
