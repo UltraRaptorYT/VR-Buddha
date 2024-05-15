@@ -7,6 +7,8 @@ interface SpotlightBeamProps {
   color: string;
   startScale: number[];
   endScale: number[];
+  startPosition: number[];
+  endPosition: number[];
   meshProps?: JSX.IntrinsicElements["mesh"];
   expand: boolean;
 }
@@ -17,10 +19,15 @@ function SpotlightBeam({
   meshProps,
   startScale,
   endScale,
+  startPosition,
+  endPosition,
   expand = false,
 }: SpotlightBeamProps) {
   const [currentScale, setCurrentScale] = useState(
     new THREE.Vector3(...startScale)
+  );
+  const [currentPosition, setCurrentPosition] = useState(
+    new THREE.Vector3(...startPosition)
   );
   const mesh =
     useRef<THREE.Mesh<THREE.BufferGeometry, THREE.Material | THREE.Material[]>>(
@@ -50,13 +57,32 @@ function SpotlightBeam({
           }
           return newScale;
         });
+        setCurrentPosition((prevPosition) => {
+          const diff = new THREE.Vector3(...endPosition)
+            .sub(prevPosition)
+            .multiplyScalar(0.1);
+          const newPosition = prevPosition.clone().add(diff);
+          if (
+            newPosition.distanceToSquared(new THREE.Vector3(...endPosition)) <
+            0.0001
+          ) {
+            clearInterval(interval);
+            return new THREE.Vector3(...endPosition);
+          }
+          return newPosition;
+        });
       }, 16);
       return () => clearInterval(interval);
     }
   }, [expand, endScale]);
 
   return (
-    <mesh ref={mesh} {...meshProps} scale={currentScale}>
+    <mesh
+      ref={mesh}
+      {...meshProps}
+      scale={currentScale}
+      position={currentPosition}
+    >
       <coneGeometry args={[0.25, 1, 32]} />
       <meshBasicMaterial color={color} transparent opacity={opacity} />
     </mesh>
