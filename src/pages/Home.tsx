@@ -55,7 +55,7 @@ function Home() {
               opacity={0.5}
               color={"green"}
               startPosition={[0, 7, -20]}
-              endPosition={[0, 0, -20]}
+              endPosition={[0, -1, -20]}
               startScale={[5, 1, 5]}
               endScale={[15, 50, 15]}
               expand={showOffering}
