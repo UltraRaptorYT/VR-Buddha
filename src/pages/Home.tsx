@@ -47,10 +47,6 @@ function Home() {
               intensity={1}
             />
             <Snow count={6000} hide={showOffering} />
-            <mesh position={[0, 0, -5]} scale={[1, 1, 1]}>
-              <coneGeometry args={[0.25, 1, 64]} />
-              <meshBasicMaterial color={"green"} />
-            </mesh>
             <SpotlightBeam
               meshProps={{
                 position: [0, 0, -20],
