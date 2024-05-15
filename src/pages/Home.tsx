@@ -9,7 +9,7 @@ import SpotlightBeam from "@/components/3D/SpotlightBeam";
 import { degreesToRads } from "@/lib/utils";
 
 function SkyBox() {
-  const { scene } = useThree();
+  const { scene, camera } = useThree();
   const loader = new THREE.CubeTextureLoader();
   const texture = loader.load([
     "/6.jpg",
@@ -20,6 +20,10 @@ function SkyBox() {
     "/2.jpg",
   ]);
   scene.background = texture;
+  camera.near = 0.1; // Adjust this value according to your scene's scale
+  camera.far = 1000; // Adjust this value according to your scene's scale
+
+  camera.updateProjectionMatrix();
   return null;
 }
 
