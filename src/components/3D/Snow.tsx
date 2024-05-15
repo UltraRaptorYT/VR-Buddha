@@ -61,7 +61,7 @@ function Snow({ count, hide = false }: { count: number; hide?: boolean }) {
       ref={mesh}
       args={[undefined, undefined, count]}
       position={[0, 0, 0]}
-      scale={hide ? 0 : 1}
+      scale={hide ? 1 : 0}
     >
       <sphereGeometry attach="geometry" args={[0.1, 0]} />
       <meshBasicMaterial
