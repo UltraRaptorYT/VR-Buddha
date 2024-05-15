@@ -56,7 +56,7 @@ function Home() {
               color={"gold"}
               startPosition={[0, 7, -20]}
               endPosition={[0, 3, -20]}
-              startScale={[5, 0, 5]}
+              startScale={[0, 0, 0]}
               endScale={[15, 50, 15]}
               expand={showOffering}
             />
