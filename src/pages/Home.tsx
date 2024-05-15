@@ -50,7 +50,7 @@ function Home() {
             <SpotlightBeam
               meshProps={{
                 position: [0, 0, -20],
-                rotation: [0, -45, 0],
+                rotation: [0, -90, 0],
               }}
               opacity={0.5}
               color={"green"}
