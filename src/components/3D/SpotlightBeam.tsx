@@ -12,6 +12,7 @@ interface SpotlightBeamProps {
   meshProps?: JSX.IntrinsicElements["mesh"];
   expand: boolean;
   scaleSpeed: number;
+  scaleMultiplier: number;
 }
 
 function SpotlightBeam({
@@ -23,6 +24,7 @@ function SpotlightBeam({
   startPosition,
   endPosition,
   scaleSpeed = 16,
+  scaleMultiplier = 0.1,
   expand = false,
 }: SpotlightBeamProps) {
   const [currentScale, setCurrentScale] = useState(
@@ -49,7 +51,7 @@ function SpotlightBeam({
         setCurrentScale((prevScale) => {
           const diff = new THREE.Vector3(...endScale)
             .sub(prevScale)
-            .multiplyScalar(0.1);
+            .multiplyScalar(scaleMultiplier);
           const newScale = prevScale.clone().add(diff);
           if (
             newScale.distanceToSquared(new THREE.Vector3(...endScale)) < 0.0001
@@ -62,7 +64,7 @@ function SpotlightBeam({
         setCurrentPosition((prevPosition) => {
           const diff = new THREE.Vector3(...endPosition)
             .sub(prevPosition)
-            .multiplyScalar(0.1);
+            .multiplyScalar(scaleMultiplier);
           const newPosition = prevPosition.clone().add(diff);
           if (
             newPosition.distanceToSquared(new THREE.Vector3(...endPosition)) <
