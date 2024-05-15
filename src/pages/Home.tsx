@@ -53,10 +53,10 @@ function Home() {
                 rotation: [degreesToRads(-80), 0, 0],
               }}
               opacity={0.5}
-              color={"green"}
+              color={"gold"}
               startPosition={[0, 7, -20]}
               endPosition={[0, 3, -20]}
-              startScale={[5, 1, 5]}
+              startScale={[5, 0, 5]}
               endScale={[15, 50, 15]}
               expand={showOffering}
             />
