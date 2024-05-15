@@ -6,6 +6,7 @@ import * as THREE from "three";
 import Snow from "@/components/3D/Snow";
 import Buddha from "@/components/3D/Buddha";
 import SpotlightBeam from "@/components/3D/SpotlightBeam";
+import { degreesToRads } from "@/lib/utils";
 
 function SkyBox() {
   const { scene } = useThree();
@@ -49,7 +50,7 @@ function Home() {
             <Snow count={6000} hide={showOffering} />
             <SpotlightBeam
               meshProps={{
-                rotation: [0, -180, 0],
+                rotation: [0, degreesToRads(-45), 0],
               }}
               opacity={0.5}
               color={"green"}

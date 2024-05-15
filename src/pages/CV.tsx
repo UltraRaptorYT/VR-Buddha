@@ -4,6 +4,7 @@ import "@tensorflow/tfjs-backend-webgl";
 import { MutableRefObject, useEffect, useRef } from "react";
 import Webcam from "react-webcam";
 import { drawKeypoints, drawSkeleton } from "@/lib/pose_utils";
+import { degreesToRads } from "@/lib/utils";
 
 export default function CV() {
   let width = 960;
@@ -49,9 +50,6 @@ export default function CV() {
     x: number;
     y: number;
   };
-
-  const degreesToRads = (deg: number) => (deg * Math.PI) / 180.0;
-  // const radsToDegrees = (rad: number) => (rad * 180.0) / Math.PI;
 
   const calculateDistance = (
     point1: Coordinate,
