@@ -54,10 +54,10 @@ function Home() {
               }}
               opacity={0.5}
               color={"green"}
-              startPosition={[0, 9, -20]}
+              startPosition={[0, 7, -20]}
               endPosition={[0, 0, -20]}
               startScale={[5, 1, 5]}
-              endScale={[5, 505, 5]}
+              endScale={[15, 505, 15]}
               expand={showOffering}
             />
             {/* <mesh position={[10, 0.1, 0]}>
