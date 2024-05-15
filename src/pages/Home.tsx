@@ -20,7 +20,7 @@ function SkyBox() {
     "/2.jpg",
   ]);
   scene.background = texture;
-  camera.near = 0.1; // Adjust this value according to your scene's scale
+  camera.near = 0; // Adjust this value according to your scene's scale
   camera.far = 1000; // Adjust this value according to your scene's scale
 
   camera.updateProjectionMatrix();
