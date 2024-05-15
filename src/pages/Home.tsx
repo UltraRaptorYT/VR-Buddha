@@ -29,7 +29,7 @@ function Home() {
   useEffect(() => {
     setTimeout(() => {
       setShowOffering(true);
-    }, 5000);
+    }, 7500);
   }, []);
 
   return (
