@@ -50,14 +50,14 @@ function Home() {
             <Snow count={6000} hide={showOffering} />
             <SpotlightBeam
               meshProps={{
-                rotation: [0, degreesToRads(45), 0],
+                rotation: [0, degreesToRads(-45), 0],
               }}
               opacity={0.5}
               color={"green"}
               startPosition={[0, 0, -20]}
               endPosition={[0, 0, -20]}
               startScale={[5, 1, 5]}
-              endScale={[5, 15, 5]}
+              endScale={[5, 35, 5]}
               expand={showOffering}
             />
             {/* <mesh position={[10, 0.1, 0]}>
