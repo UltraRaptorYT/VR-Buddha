@@ -4,7 +4,7 @@ import { Canvas, useThree } from "@react-three/fiber"; // useLoader
 // import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import * as THREE from "three";
 import Snow from "@/components/3D/Snow";
-// import Buddha from "@/components/3D/Buddha";
+import Buddha from "@/components/3D/Buddha";
 import SpotlightBeam from "@/components/3D/SpotlightBeam";
 
 function SkyBox() {
@@ -47,6 +47,10 @@ function Home() {
               intensity={1}
             />
             <Snow count={6000} hide={showOffering} />
+            <mesh>
+              <coneGeometry args={[1, 1, 10]} />
+              <meshBasicMaterial color={"black"} />
+            </mesh>
             <SpotlightBeam
               meshProps={{
                 position: [0, 0, -20],
@@ -62,7 +66,7 @@ function Home() {
             <boxGeometry />
             <meshBasicMaterial color="gold" />
           </mesh> */}
-            {/* <Buddha position={[0, -5, -50]} scale={[0.9, 0.9, 0.9]} /> */}
+            <Buddha position={[0, -5, -50]} scale={[0.9, 0.9, 0.9]} />
             {/* {buddhaOBJ && (
               <primitive
                 object={buddhaOBJ}
