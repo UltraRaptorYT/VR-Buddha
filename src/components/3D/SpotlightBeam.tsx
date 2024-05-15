@@ -11,6 +11,7 @@ interface SpotlightBeamProps {
   endPosition: number[];
   meshProps?: JSX.IntrinsicElements["mesh"];
   expand: boolean;
+  scaleSpeed: number;
 }
 
 function SpotlightBeam({
@@ -21,6 +22,7 @@ function SpotlightBeam({
   endScale,
   startPosition,
   endPosition,
+  scaleSpeed = 16,
   expand = false,
 }: SpotlightBeamProps) {
   const [currentScale, setCurrentScale] = useState(
@@ -71,7 +73,7 @@ function SpotlightBeam({
           }
           return newPosition;
         });
-      }, 16);
+      }, scaleSpeed);
       return () => clearInterval(interval);
     }
   }, [expand, endScale]);
