@@ -57,7 +57,7 @@ function Home() {
               startPosition={[0, 7, -20]}
               endPosition={[0, 3, -20]}
               startScale={[0, 0, 0]}
-              endScale={[15, 50, 15]}
+              endScale={[15, 40, 15]}
               scaleSpeed={16}
               scaleMultiplier={0.01}
               expand={showOffering}
