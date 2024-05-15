@@ -53,8 +53,8 @@ function Home() {
                 rotation: [0, -45, 0],
               }}
               opacity={0.5}
-              color={"yellow"}
-              startScale={[5, 3, 5]}
+              color={"green"}
+              startScale={[5, 1, 5]}
               endScale={[5, 5, 5]}
               expand={showOffering}
             />
