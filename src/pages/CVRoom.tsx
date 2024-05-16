@@ -136,7 +136,7 @@ export default function CVRoom() {
   };
 
   useEffect(() => {
-    if (isKneeling) {
+    if (isKneeling && !state) {
       updateState();
     }
   }, [isKneeling]);
