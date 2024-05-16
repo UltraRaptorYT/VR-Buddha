@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { VRButton, XR, XREvent, XRManagerEvent } from "@react-three/xr";
 import { Canvas, useThree } from "@react-three/fiber"; // useLoader
 // import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
@@ -27,12 +27,24 @@ function SkyBox() {
   return null;
 }
 
-function Home() {
-  const [showOffering, setShowOffering] = useState<boolean>(false);
+function Home({
+  showOffering,
+  setShowOffering,
+  roomMode = false,
+}: {
+  showOffering: boolean;
+  setShowOffering: React.Dispatch<React.SetStateAction<boolean>>;
+  roomMode?: boolean;
+}) {
+  let [animationComplete, setAnimationComplete] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log("hi")
-  }, []);
+    if (animationComplete) {
+      setTimeout(() => {
+        setShowOffering(false);
+      }, 1000);
+    }
+  }, [animationComplete]);
 
   return (
     <>
@@ -42,9 +54,11 @@ function Home() {
           <XR
             onSessionStart={(event: XREvent<XRManagerEvent>) => {
               console.log(event);
-              setTimeout(() => {
-                setShowOffering(true);
-              }, 7500);
+              if (!roomMode) {
+                setTimeout(() => {
+                  setShowOffering(true);
+                }, 7500);
+              }
             }}
           >
             <ambientLight intensity={0.055} color={"gold"} />
@@ -70,6 +84,7 @@ function Home() {
               scaleSpeed={16}
               scaleMultiplier={0.01}
               expand={showOffering}
+              setAnimationComplete={setAnimationComplete}
             />
             {/* <mesh position={[10, 0.1, 0]}>
             <boxGeometry />
