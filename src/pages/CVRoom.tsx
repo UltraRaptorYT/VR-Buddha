@@ -139,7 +139,7 @@ export default function CVRoom() {
     if (isKneeling && !state) {
       updateState();
     }
-  }, [isKneeling]);
+  }, [isKneeling, state]);
 
   async function updateState() {
     console.log("UPDATING STATE", state, manualMode);
