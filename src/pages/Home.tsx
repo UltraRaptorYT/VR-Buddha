@@ -1,5 +1,5 @@
 import { Suspense, useEffect, useState } from "react";
-import { VRButton, XR } from "@react-three/xr";
+import { VRButton, XR, XREvent, XRManagerEvent } from "@react-three/xr";
 import { Canvas, useThree } from "@react-three/fiber"; // useLoader
 // import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import * as THREE from "three";
@@ -31,9 +31,7 @@ function Home() {
   const [showOffering, setShowOffering] = useState<boolean>(false);
 
   useEffect(() => {
-    setTimeout(() => {
-      setShowOffering(true);
-    }, 7500);
+    console.log("hi")
   }, []);
 
   return (
@@ -41,7 +39,14 @@ function Home() {
       <VRButton />
       <Canvas>
         <Suspense fallback={null}>
-          <XR>
+          <XR
+            onSessionStart={(event: XREvent<XRManagerEvent>) => {
+              console.log(event);
+              setTimeout(() => {
+                setShowOffering(true);
+              }, 7500);
+            }}
+          >
             <ambientLight intensity={0.055} color={"gold"} />
             {/* <pointLight position={[0.5, 0.5, 0.5]} /> */}
             <directionalLight
