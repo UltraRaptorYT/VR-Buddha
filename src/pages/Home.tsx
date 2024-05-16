@@ -81,7 +81,6 @@ function Home({
               endPosition={[0, 3, -20]}
               startScale={[0, 0, 0]}
               endScale={[15, 40, 15]}
-              scaleSpeed={16}
               scaleMultiplier={0.01}
               expand={showOffering}
               setAnimationComplete={setAnimationComplete}

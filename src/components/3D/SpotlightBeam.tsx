@@ -11,7 +11,6 @@ interface SpotlightBeamProps {
   endPosition: number[];
   meshProps?: JSX.IntrinsicElements["mesh"];
   expand: boolean;
-  scaleSpeed: number;
   scaleMultiplier: number;
   setAnimationComplete: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -24,7 +23,6 @@ function SpotlightBeam({
   endScale,
   startPosition,
   endPosition,
-  scaleSpeed = 16,
   scaleMultiplier = 0.1,
   expand = false,
   setAnimationComplete,
