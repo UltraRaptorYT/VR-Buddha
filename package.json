@@ -19,6 +19,7 @@
     "@react-three/fiber": "^8.15.16",
     "@react-three/xr": "^5.7.1",
     "@supabase/supabase-js": "^2.43.2",
+    "@tensorflow-models/body-pix": "^2.2.1",
     "@tensorflow-models/hand-pose-detection": "^2.0.1",
     "@tensorflow-models/pose-detection": "^2.1.3",
     "@tensorflow/tfjs-backend-wasm": "^4.17.0",

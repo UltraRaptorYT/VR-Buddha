@@ -1,4 +1,5 @@
 import * as poseDetection from "@tensorflow-models/pose-detection";
+import * as bodyPix from "@tensorflow-models/body-pix";
 import * as tf from "@tensorflow/tfjs-core";
 import "@tensorflow/tfjs-backend-webgl";
 import { MutableRefObject, useEffect, useRef } from "react";
@@ -18,25 +19,35 @@ export default function CVRoom() {
   let height = document.body.clientHeight || 699;
   let width = (height * 4) / 3;
   let kneelAngle = 105;
-  // let prayHandDistance = 25;
   const webcamRef = useRef<Webcam>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const virtualBGRef = useRef<HTMLImageElement | null>(null);
+  let detector: poseDetection.PoseDetector;
+  let bodypix: bodyPix.BodyPix;
 
-  async function loadDetector() {
+  async function loadModels() {
     const detectorConfig = {
       modelType: poseDetection.movenet.modelType.SINGLEPOSE_LIGHTNING,
     };
-    const detector = await poseDetection.createDetector(
+    detector = await poseDetection.createDetector(
       poseDetection.SupportedModels.MoveNet,
       detectorConfig
     );
-    console.log("Running Detector");
+
+    bodypix = await bodyPix.load({
+      architecture: "MobileNetV1",
+      outputStride: 16,
+      multiplier: 0.75,
+      quantBytes: 2,
+    });
+
+    console.log("Running Models");
     setInterval(async () => {
-      runDetector(detector);
+      await runModels();
     }, 100);
   }
 
-  async function runDetector(detector: poseDetection.PoseDetector) {
+  async function runModels() {
     if (
       typeof webcamRef.current !== "undefined" &&
       webcamRef.current !== null &&
@@ -50,10 +61,24 @@ export default function CVRoom() {
       webcamRef.current.video.width = videoWidth;
       webcamRef.current.video.height = videoHeight;
 
+      const segmentation = await bodypix.segmentPerson(video, {
+        flipHorizontal: false,
+        internalResolution: "medium",
+        segmentationThreshold: 0.5,
+      });
+
       const poses = await detector.estimatePoses(video);
-      drawCanvas(poses[0], video, videoWidth, videoHeight, canvasRef);
+      drawCanvas(
+        segmentation,
+        poses[0],
+        video,
+        videoWidth,
+        videoHeight,
+        canvasRef
+      );
     }
   }
+
   type Coordinate = {
     x: number;
     y: number;
@@ -80,13 +105,14 @@ export default function CVRoom() {
   };
 
   const drawCanvas = (
+    segmentation: bodyPix.SemanticPersonSegmentation,
     poses: poseDetection.Pose,
     video: HTMLVideoElement,
     videoWidth: number,
     videoHeight: number,
     canvas: MutableRefObject<HTMLCanvasElement | null>
   ) => {
-    if (canvas.current && poses && video) {
+    if (canvas.current && segmentation && poses && video) {
       const ctx = canvas.current.getContext("2d");
       if (ctx) {
         canvas.current.width = videoWidth;
@@ -118,21 +144,40 @@ export default function CVRoom() {
           setIsKneeling(false);
         }
 
-        // // Palms Together
-        // let handDistance = calculateDistance(
-        //   poses.keypoints[10],
-        //   poses.keypoints[9]
-        // );
-        // console.log(handDistance);
-        // if (handDistance <= prayHandDistance) {
-        //   console.log("Palms together");
-        //   color = "red";
-        // }
+        drawVirtualBackground(ctx, video, segmentation);
 
         drawKeypoints(poses.keypoints, 0.01, ctx, 1, color);
         drawSkeleton(poses.keypoints, 0.55, ctx, 1, color);
       }
     }
+  };
+
+  const drawVirtualBackground = (
+    ctx: CanvasRenderingContext2D,
+    video: HTMLVideoElement,
+    segmentation: bodyPix.SemanticPersonSegmentation
+  ) => {
+    if (virtualBGRef.current) {
+      ctx.drawImage(
+        virtualBGRef.current,
+        0,
+        0,
+        video.videoWidth,
+        video.videoHeight
+      );
+    }
+    const foregroundColor = { r: 0, g: 0, b: 0, a: 255 };
+    const backgroundColor = { r: 0, g: 0, b: 0, a: 0 };
+    const mask = bodyPix.toMask(
+      segmentation,
+      foregroundColor,
+      backgroundColor,
+      false
+    );
+    ctx.putImageData(mask, 0, 0);
+    ctx.globalCompositeOperation = "source-in";
+    ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+    ctx.globalCompositeOperation = "source-over";
   };
 
   useEffect(() => {
@@ -166,7 +211,7 @@ export default function CVRoom() {
   async function loadTF() {
     await tf.ready();
     await tf.setBackend("webgl");
-    await loadDetector();
+    await loadModels();
   }
 
   async function getRoom() {
@@ -278,6 +323,7 @@ export default function CVRoom() {
           zIndex: 9,
           width: width,
           height: height,
+          backgroundImage: "url(" + "/1.jpg" + ")",
         }}
       />
     </div>
