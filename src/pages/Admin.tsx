@@ -109,7 +109,9 @@ function Admin() {
                     }}
                     checked={e.state}
                   />
-                  <Label htmlFor="manual-mode">Update State</Label>
+                  <Label htmlFor="manual-mode" className="text-lg">
+                    Update State
+                  </Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Switch
@@ -119,7 +121,9 @@ function Admin() {
                     }}
                     checked={e.manual}
                   />
-                  <Label htmlFor="manual-mode">Manual Mode</Label>
+                  <Label htmlFor="manual-mode" className="text-lg">
+                    Manual Mode
+                  </Label>
                 </div>
               </div>
             </div>
