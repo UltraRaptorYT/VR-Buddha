@@ -77,7 +77,7 @@ function Admin() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl h-full grid grid-cols-2 p-4 gap-4 justify-between">
+    <div className="mx-auto max-w-3xl h-full grid p-4 gap-4 justify-between">
       {rooms?.map((e, id) => {
         return (
           <div
