@@ -77,7 +77,7 @@ function Admin() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl h-full grid p-4 gap-4 justify-between">
+    <div className="mx-auto max-w-3xl grid p-4 gap-4 items-center h-fit">
       {rooms?.map((e, id) => {
         return (
           <div
@@ -96,11 +96,11 @@ function Admin() {
                 <FaTrash />
               </Button>
             </div>
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center gap-4">
               <span className="text-5xl">
                 {e.state ? <FaCheck color="green" /> : <FaXmark color="red" />}
               </span>
-              <div className="flex flex-col gap-2 p-2">
+              <div className="flex flex-col gap-4 p-2">
                 <div className="flex items-center space-x-2">
                   <Switch
                     id="manual-mode"
