@@ -19,6 +19,8 @@ export default function CVRoom() {
   let height = document.body.clientHeight || 699;
   let width = (height * 4) / 3;
   let kneelAngle = 105;
+  let standingAngle = 180;
+  let standingAngleDiff = 20;
   const webcamRef = useRef<Webcam>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const virtualBGRef = useRef<HTMLImageElement | null>(null);
@@ -139,6 +141,32 @@ export default function CVRoom() {
           console.log("KNEELING");
           color = "pink";
           console.log(poses.keypoints, manualMode);
+          setIsKneeling(true);
+        } else {
+          setIsKneeling(false);
+        }
+
+        // Check Bowing
+        let leftBodyRadAngle = cosineRule(
+          poses.keypoints[5],
+          poses.keypoints[11],
+          poses.keypoints[13]
+        );
+
+        let rightBodyRadAngle = cosineRule(
+          poses.keypoints[6],
+          poses.keypoints[12],
+          poses.keypoints[14]
+        );
+
+        if (
+          leftBodyRadAngle <
+            degreesToRads(standingAngle) - degreesToRads(standingAngleDiff) &&
+          rightBodyRadAngle <
+            degreesToRads(standingAngle) - degreesToRads(standingAngleDiff)
+        ) {
+          console.log("BOWING");
+          color = "red";
           setIsKneeling(true);
         } else {
           setIsKneeling(false);
@@ -323,7 +351,7 @@ export default function CVRoom() {
           zIndex: 9,
           width: width,
           height: height,
-          backgroundImage: "url(" + "/1.jpg" + ")",
+          // backgroundImage: "url(" + "/1.jpg" + ")",
         }}
       />
     </div>
