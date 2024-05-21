@@ -351,7 +351,7 @@ export default function CVRoom() {
           zIndex: 9,
           width: width,
           height: height,
-          // backgroundImage: "url(" + "/1.jpg" + ")",
+          backgroundImage: "url(" + "/1.jpg" + ")",
         }}
       />
     </div>
